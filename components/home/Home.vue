@@ -4,12 +4,7 @@
       <v-container fluid>
         <v-layout justify-space-between row class="nav-menu">
           <v-flex md12>
-            <v-card>
-              <v-card-text
-                >Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Aspernatur tempore libero architecto qui consectetur eveniet.
-              </v-card-text>
-            </v-card>
+            <NavBar />
           </v-flex>
         </v-layout>
         <v-layout align-center justify-center row>
@@ -19,20 +14,11 @@
         </v-layout>
         <v-layout justify-space-between row class="mobile-menu">
           <v-flex xs1 md1>
-            <btn-icon
-              color="white"
-              icon="menu"
-            />
+            <btn-icon color="white" icon="menu" />
           </v-flex>
           <v-flex xs3 sm2 md1>
-            <btn-icon
-              color="white"
-              icon="plus"
-            />
-            <btn-icon
-              color="white"
-              icon="dots-vertical"
-            />
+            <btn-icon color="white" icon="plus" />
+            <btn-icon color="white" icon="dots-vertical" />
           </v-flex>
         </v-layout>
         <v-layout
@@ -43,7 +29,9 @@
           row
         >
           <v-flex xs11 sm11 md12>
-            <h2>Sala de estar <btn-icon icon="chevron-right" color="white"/></h2>
+            <h2
+              >Sala de estar <btn-icon icon="chevron-right" color="white"
+            /></h2>
           </v-flex>
           <v-flex xs11 sm11 md12 v-if="devices.length == 0">
             <v-card color="#F0EDFF">
@@ -55,7 +43,7 @@
             </v-card>
           </v-flex>
         </v-layout>
-        <v-layout align-center justify-center row wrap>
+        <v-layout align-center justify-center row wrap class="cards-wrapper">
           <v-flex
             xs12
             sm5
@@ -68,6 +56,46 @@
               :title="device.label"
               :subtitle="device.manufacturer"
               :type="device.type"
+              :isOn="device.state.turnedOn"
+            />
+          </v-flex>
+        </v-layout>
+        <v-layout
+          class="house-rooms"
+          align-center
+          justify-center
+          justify-space-around
+          row
+        >
+          <v-flex xs11 sm11 md12>
+            <h2
+              >Sala de juegos <btn-icon icon="chevron-right" color="white"
+            /></h2>
+          </v-flex>
+          <v-flex xs11 sm11 md12 v-if="devices.length == 0">
+            <v-card color="#F0EDFF">
+              <v-card-text class="text">
+                <p>
+                  No hay dispositivos
+                </p>
+              </v-card-text>
+            </v-card>
+          </v-flex>
+        </v-layout>
+        <v-layout align-center justify-center row wrap class="cards-wrapper">
+          <v-flex
+            xs12
+            sm5
+            md2
+            v-for="device in devices"
+            :key="device.id"
+            class="card-generic"
+          >
+            <Card
+              :title="device.label"
+              :subtitle="device.manufacturer"
+              :type="device.type"
+              :isOn="device.state.turnedOn"
             />
           </v-flex>
         </v-layout>
@@ -79,10 +107,12 @@
 <script>
 import Card from '../Card.vue';
 import BtnIcon from '../BtnIcon.vue';
+import NavBar from '../NavBar.vue';
 export default {
   components: {
     Card,
-    BtnIcon
+    BtnIcon,
+    NavBar
   },
   data() {
     return {
@@ -103,7 +133,7 @@ export default {
           label: 'Refrigerador',
           manufacturer: 'Samsung',
           state: {
-            turnedOn: true,
+            turnedOn: false,
             temperature: 15
           }
         },
@@ -124,7 +154,7 @@ export default {
           label: 'Ventilador sala',
           manufacturer: 'Philips',
           state: {
-            turnedOn: true,
+            turnedOn: false,
             speed: 2
           }
         },
@@ -137,17 +167,6 @@ export default {
             turnedOn: true,
             temperature: 15
           }
-        },
-        {
-          id: '006',
-          type: 'television',
-          label: 'Televisión sala',
-          manufacturer: 'Samsung',
-          state: {
-            turnedOn: true,
-            channel: 500,
-            volumen: 50
-          }
         }
       ]
     };
@@ -159,6 +178,7 @@ export default {
 .container {
   background-color: #252850;
   height: 100%;
+  padding-top: 0;
 }
 .main-title {
   text-align: center;
@@ -186,10 +206,22 @@ export default {
   margin: 15px 15px;
 }
 
+.mobile-menu {
+  margin-left: 15px;
+}
+
+.cards-wrapper {
+  max-height: 38vh;
+  overflow-y: auto;
+}
+
 @media screen and (min-width: 768px) {
   .nav-menu {
     display: flex;
     margin-bottom: 15px;
+    position: sticky;
+    top: 0;
+    z-index: 1;
   }
   .mobile-menu {
     display: none;

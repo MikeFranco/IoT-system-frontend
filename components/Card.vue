@@ -1,8 +1,9 @@
 <template>
   <v-card color="#F0EDFF">
-    <v-card-title class="text"
-      >{{ title }} <v-spacer></v-spacer>
-      <btn-icon color="#555582" icon="power" :execFunct="turnOff" />
+    <v-card-title class="text card-title"
+      >{{ title }}
+      <v-spacer></v-spacer>
+      <btn-icon :color="isOn ? '#00C892' : 'error'" icon="power" :execFunct="turnOff" />
     </v-card-title>
     <v-card-text>
       <p class="text">
@@ -18,7 +19,7 @@
 <script>
 import BtnIcon from './BtnIcon.vue';
 export default {
-  props: ['title', 'subtitle', 'type', 'actions'],
+  props: ['title', 'subtitle', 'type', 'actions', 'isOn'],
   components: {
     BtnIcon
   },
@@ -36,4 +37,7 @@ export default {
 </script>
 
 <style>
+.card-title {
+  font-size: 30px;
+}
 </style>
