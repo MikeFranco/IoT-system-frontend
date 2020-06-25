@@ -55,7 +55,7 @@
             </v-card>
           </v-flex>
         </v-layout>
-        <v-layout align-initial row wrap>
+        <v-layout align-center justify-center row wrap>
           <v-flex
             xs12
             sm5
