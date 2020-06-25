@@ -39,12 +39,21 @@
               <v-btn icon> <v-icon>mdi-chevron-right</v-icon> </v-btn></h2
             >
           </v-flex>
-          <v-flex xs11 sm11 md12>
+          <v-flex xs11 sm11 md12 v-if="devices.length == 0">
             <v-card color="#F0EDFF">
-              <v-card-text style="color: black;">
-                No hay dispositivos
+              <v-card-text class="text">
+                <p>
+                  No hay dispositivos
+                </p>
               </v-card-text>
             </v-card>
+          </v-flex>
+          <v-flex xs5 sm5 md2 v-for="device in devices" :key="device.id">
+            <Card
+              :title="device.label"
+              :subtitle="device.manufacturer"
+              :type="device.type"
+            />
           </v-flex>
         </v-layout>
       </v-container>
@@ -53,7 +62,11 @@
 </template>
 
 <script>
+import Card from '../Card.vue';
 export default {
+  components: {
+    Card
+  },
   data() {
     return {
       devices: [
@@ -110,6 +123,10 @@ export default {
 
 .nav-menu {
   display: none;
+}
+
+.text {
+  color: black;
 }
 
 @media screen and (min-width: 768px) {

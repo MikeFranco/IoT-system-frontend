@@ -1,10 +1,14 @@
 <template>
-  <v-card>
-    <v-card-title>{{ title }}</v-card-title>
-    <v-card-text>{{ subtitle }}</v-card-text>
+  <v-card color="#F0EDFF">
+    <v-card-title class="text">{{ title }}</v-card-title>
+    <v-card-text>
+      <p class="text">
+        {{ subtitle }}
+      </p>
+    </v-card-text>
     <v-card-actions
       ><v-btn icon>
-        <v-icon>mdi-fan</v-icon>
+        <v-icon color="black">{{ getIcon }}</v-icon>
       </v-btn></v-card-actions
     >
   </v-card>
@@ -12,7 +16,12 @@
 
 <script>
 export default {
-  props: ['title', 'subtitle', 'actions']
+  props: ['title', 'subtitle', 'type', 'actions'],
+  computed: {
+    getIcon() {
+      return this.type ? `mdi-${this.type}` : `mdi-alert-circle-outline`;
+    }
+  }
 };
 </script>
 
