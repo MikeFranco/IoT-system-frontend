@@ -19,17 +19,20 @@
         </v-layout>
         <v-layout justify-space-between row class="mobile-menu">
           <v-flex xs1 md1>
-            <v-btn icon>
-              <v-icon>mdi-menu</v-icon>
-            </v-btn>
+            <btn-icon
+              color="white"
+              icon="menu"
+            />
           </v-flex>
           <v-flex xs3 sm2 md1>
-            <v-btn icon>
-              <v-icon>mdi-plus</v-icon>
-            </v-btn>
-            <v-btn icon>
-              <v-icon>mdi-dots-vertical</v-icon>
-            </v-btn>
+            <btn-icon
+              color="white"
+              icon="plus"
+            />
+            <btn-icon
+              color="white"
+              icon="dots-vertical"
+            />
           </v-flex>
         </v-layout>
         <v-layout
@@ -40,10 +43,7 @@
           row
         >
           <v-flex xs11 sm11 md12>
-            <h2
-              >Sala de estar
-              <v-btn icon> <v-icon>mdi-chevron-right</v-icon> </v-btn></h2
-            >
+            <h2>Sala de estar <btn-icon icon="chevron-right" color="white"/></h2>
           </v-flex>
           <v-flex xs11 sm11 md12 v-if="devices.length == 0">
             <v-card color="#F0EDFF">
@@ -78,9 +78,11 @@
 
 <script>
 import Card from '../Card.vue';
+import BtnIcon from '../BtnIcon.vue';
 export default {
   components: {
-    Card
+    Card,
+    BtnIcon
   },
   data() {
     return {
@@ -154,17 +156,22 @@ export default {
 </script>
 
 <style>
+.container {
+  background-color: #252850;
+  height: 100%;
+}
 .main-title {
   text-align: center;
   font-size: 50px;
 }
 
-.flex {
+/* .flex {
   background-color: red;
-}
+} */
 
 .house-rooms {
   margin-top: 5vh;
+  margin-left: 1vh;
 }
 
 .nav-menu {
