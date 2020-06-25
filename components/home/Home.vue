@@ -32,7 +32,13 @@
             </v-btn>
           </v-flex>
         </v-layout>
-        <v-layout class="house-rooms" wrap align-center justify-center row>
+        <v-layout
+          class="house-rooms"
+          align-center
+          justify-center
+          justify-space-around
+          row
+        >
           <v-flex xs11 sm11 md12>
             <h2
               >Sala de estar
@@ -48,7 +54,16 @@
               </v-card-text>
             </v-card>
           </v-flex>
-          <v-flex xs5 sm5 md2 v-for="device in devices" :key="device.id">
+        </v-layout>
+        <v-layout align-initial row wrap>
+          <v-flex
+            xs12
+            sm5
+            md2
+            v-for="device in devices"
+            :key="device.id"
+            class="card-generic"
+          >
             <Card
               :title="device.label"
               :subtitle="device.manufacturer"
@@ -100,6 +115,37 @@ export default {
             channel: 500,
             volumen: 50
           }
+        },
+        {
+          id: '004',
+          type: 'fan',
+          label: 'Ventilador sala',
+          manufacturer: 'Philips',
+          state: {
+            turnedOn: true,
+            speed: 2
+          }
+        },
+        {
+          id: '005',
+          type: 'fridge',
+          label: 'Refrigerador',
+          manufacturer: 'Samsung',
+          state: {
+            turnedOn: true,
+            temperature: 15
+          }
+        },
+        {
+          id: '006',
+          type: 'television',
+          label: 'Televisión sala',
+          manufacturer: 'Samsung',
+          state: {
+            turnedOn: true,
+            channel: 500,
+            volumen: 50
+          }
         }
       ]
     };
@@ -127,6 +173,10 @@ export default {
 
 .text {
   color: black;
+}
+
+.card-generic {
+  margin: 15px 15px;
 }
 
 @media screen and (min-width: 768px) {
