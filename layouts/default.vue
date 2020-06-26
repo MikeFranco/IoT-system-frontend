@@ -37,7 +37,7 @@
         <v-btn icon @click.stop="miniVariant = !miniVariant">
           <v-icon color="#F0EDFF"
             >mdi-{{
-              miniVariant ? 'unfold-more-horizontal' : 'unfold-less-horizontal'
+              miniVariant ? 'unfold-more-vertical' : 'unfold-less-vertical'
             }}</v-icon
           >
         </v-btn>

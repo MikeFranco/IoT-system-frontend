@@ -11,7 +11,7 @@
       text="Error deleting device"
     />
     <v-snackbar top color="#4F1A1C" timeout="3000" v-model="deleteSnackbar">
-      ¿Estás seguro de borrar {{ title }}?
+      ¿Estás seguro de borrar {{ device.title }}?
       <template v-slot:action="{ attrs }">
         <v-btn dark text v-bind="attrs" @click="deleteDevice">
           Si
@@ -23,36 +23,25 @@
     </v-snackbar>
 
     <v-card color="#F0EDFF">
-      <v-card-title class="text card-title">{{ title }} </v-card-title>
+      <v-card-title class="text card-title">
+        <btn-icon color="#252850" :icon="device.type" />{{ device.label }}
+      </v-card-title>
       <v-card-text>
         <p class="text">
-          {{ subtitle }}
+          {{ device.manufacturer }}
         </p>
-        <!-- <v-container fluid class="card-text-container">
-          <v-layout>
-            <v-flex xs10 md3>
-              <p class="text">
-                {{ subtitle }}
-              </p>
-            </v-flex>
-            <v-spacer></v-spacer>
-            <v-flex xs1 md2>
-              <span @click="editDevice">
-                  <btn-icon :color="isOn ? '#00C892' : 'error'" icon="power" />
-                </span>
-                <span @click="editDevice">
-                  <btn-icon color="#252850" icon="pencil" />
-                </span>
-                <span @click="tryDeleteDevice">
-                  <btn-icon color="#252850" icon="delete" />
-                </span>
-            </v-flex>
-          </v-layout>
-        </v-container> -->
       </v-card-text>
       <v-card-actions>
-        <span @click="editDevice">
-          <btn-icon :color="isOn ? '#00C892' : 'error'" icon="power" />
+        <span @click="turnOff">
+          <v-switch
+            color="#00C892"
+            v-model="actualDeviceIsOn"
+            :true-value="true"
+            :false-value="false"
+          ></v-switch>
+        </span>
+        <span @click="goToMoreActions">
+          <btn-icon color="#252850" icon="dots-horizontal" />
         </span>
         <span @click="editDevice">
           <btn-icon color="#252850" icon="pencil" />
@@ -69,7 +58,7 @@
 import BtnIcon from './BtnIcon.vue';
 import Snackbar from './Snackbar.vue';
 export default {
-  props: ['device', 'title', 'subtitle', 'type', 'actions', 'isOn', 'id'],
+  props: ['device', 'isOn'],
   components: {
     BtnIcon,
     Snackbar
@@ -77,6 +66,7 @@ export default {
   data() {
     return {
       actualDevice: {},
+      actualDeviceIsOn: {},
       showSnackbar: false,
       deleteSnackbar: false,
       errorDeleteSnackbar: false
@@ -84,17 +74,29 @@ export default {
   },
   methods: {
     turnOff() {
-      console.log('%c⧭', 'color: #ff0000', `${this.title} turned off`);
+      /* 
+        this.$axios.put('/back/device)
+          .then(response => console.log(response))
+          .catch(error => console.error(error))
+      */
+      console.log('%c⧭', 'color: #007300', this.actualDeviceIsOn);
+      console.log(
+        '%c⧭',
+        'color: #ff0000',
+        `${this.actualDevice.label} turned off`
+      );
     },
     editDevice() {
       console.log('%c⧭', 'color: #00e600', this.actualDevice);
-      this.$store.commit('getOneDevice', this.actualDevice);
+      this.$store.commit('setOneDevice', this.actualDevice);
       this.$router.push({
         path: '/edit-device'
       });
     },
-    updateActualDevice() {
+    setActualDevice() {
+      this.$store.commit('setOneDevice', this.actualDevice);
       this.actualDevice = this.device;
+      this.actualDeviceIsOn = this.isOn;
     },
     deleteDevice() {
       this.deleteSnackbar = false;
@@ -110,10 +112,16 @@ export default {
     },
     tryDeleteDevice() {
       this.deleteSnackbar = true;
+    },
+    goToMoreActions() {
+      this.$store.commit('setOneDevice', this.actualDevice);
+      this.$router.push({
+        path: '/actions'
+      });
     }
   },
   created() {
-    this.updateActualDevice();
+    this.setActualDevice();
   }
 };
 </script>

@@ -7,7 +7,7 @@
             <h1>Mi hogar</h1>
           </v-flex>
         </v-layout>
-        <v-layout
+        <!-- <v-layout
           class="house-rooms"
           align-center
           justify-center
@@ -40,14 +40,9 @@
           >
             <Card
               :device="device"
-              :title="device.label"
-              :subtitle="device.manufacturer"
-              :type="device.type"
-              :isOn="device.state.turnedOn"
-              :id="device.id"
             />
           </v-flex>
-        </v-layout>
+        </v-layout> -->
         <v-layout
           class="house-rooms"
           align-center
@@ -81,11 +76,7 @@
           >
             <Card
               :device="device"
-              :title="device.label"
-              :subtitle="device.manufacturer"
-              :type="device.type"
               :isOn="device.state.turnedOn"
-              :id="device.id"
             />
           </v-flex>
         </v-layout>
@@ -150,7 +141,6 @@ export default {
 }
 
 .cards-wrapper {
-  max-height: 38vh;
   overflow-y: auto;
 }
 </style>

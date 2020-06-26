@@ -1,6 +1,7 @@
 export const state = () =>({
   devices: [],
-  oneDevice: {}
+  oneDevice: {},
+  oneDeviceActions: {}
 })
 
 export const getters = {
@@ -9,6 +10,9 @@ export const getters = {
   },
   getOneDevice(state){
     return state.oneDevice;
+  },
+  getOneDeviceActions(state){
+    return state.oneDeviceActions
   }
 }
 
@@ -16,7 +20,10 @@ export const mutations = {
   saveDevices(state, devices) {
     state.devices = devices;
   },
-  getOneDevice(state, value){
+  setOneDevice(state, value){
     state.oneDevice = value;
+  },
+  setOneDeviceActions(state, value){
+    state.oneDeviceActions = value;
   }
 }
