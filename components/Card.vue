@@ -25,18 +25,16 @@
 <script>
 import BtnIcon from './BtnIcon.vue';
 export default {
-  props: ['title', 'subtitle', 'type', 'actions', 'isOn'],
+  props: ['device', 'title', 'subtitle', 'type', 'actions', 'isOn', 'id'],
   components: {
     BtnIcon
-  },
-  computed: {
-    getIcon() {
-      return this.type ? `mdi-${this.type}` : `mdi-alert-circle-outline`;
-    }
   },
   methods: {
     turnOff() {
       console.log('%c⧭', 'color: #ff0000', `${this.title} turned off`);
+    },
+    showMoreDevice(){
+      this.$store.commit('editDevice', )
     }
   }
 };

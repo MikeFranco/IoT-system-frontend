@@ -2,11 +2,11 @@
   <div>
     <v-navigation-drawer
       :mini-variant="miniVariant"
-      :clipped="clipped"
       v-model="drawer"
       fixed
       app
       color="#F0EDFF"
+      hide-overlay
     >
       <v-list>
         <v-list-item-group>
@@ -62,11 +62,12 @@ export default {
     return {
       title: "Smart's",
       items: [
+        { label: 'Mi hogar', route: '/', icon: 'home' },
         { label: 'Salas', route: '/rooms', icon: 'sofa' },
         { label: 'Dispositivos', route: '/devices', icon: 'cellphone' },
         { label: 'Historial', route: '/history', icon: 'history' }
       ],
-      miniVariant: false,
+      miniVariant: true,
       clipped: false,
       drawer: true
     };

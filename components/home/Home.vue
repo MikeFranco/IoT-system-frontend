@@ -2,23 +2,9 @@
   <section>
     <v-app>
       <v-container fluid>
-        <!-- <v-layout justify-space-between row class="nav-menu">
-          <v-flex md12>
-            <NavBar />
-          </v-flex>
-        </v-layout> -->
         <v-layout align-center justify-center row>
           <v-flex xs10 md5 class="main-title">
             <h1>Mi hogar</h1>
-          </v-flex>
-        </v-layout>
-        <v-layout justify-space-between row class="mobile-menu">
-          <v-flex xs1 md1>
-            <btn-icon color="white" icon="menu" />
-          </v-flex>
-          <v-flex xs3 sm2 md1>
-            <btn-icon color="white" icon="plus" />
-            <btn-icon color="white" icon="dots-vertical" />
           </v-flex>
         </v-layout>
         <v-layout
@@ -92,10 +78,12 @@
             class="card-generic"
           >
             <Card
+              :device="device"
               :title="device.label"
               :subtitle="device.manufacturer"
               :type="device.type"
               :isOn="device.state.turnedOn"
+              :id="device.id"
             />
           </v-flex>
         </v-layout>
@@ -108,12 +96,11 @@
 import { mapGetters } from 'vuex';
 import Card from '../Card.vue';
 import BtnIcon from '../BtnIcon.vue';
-import NavBar from '../NavBar.vue';
+
 export default {
   components: {
     Card,
-    BtnIcon,
-    NavBar
+    BtnIcon
   },
   computed: {
     ...mapGetters(['getAllDevices']),
@@ -136,17 +123,9 @@ export default {
   font-size: 50px;
 }
 
-/* .flex {
-  background-color: red;
-} */
-
 .house-rooms {
   margin-top: 5vh;
   margin-left: 1vh;
-}
-
-.nav-menu {
-  display: none;
 }
 
 .text {
@@ -157,25 +136,9 @@ export default {
   margin: 15px 15px;
 }
 
-.mobile-menu {
-  margin-left: 15px;
-}
-
 .cards-wrapper {
   max-height: 38vh;
   overflow-y: auto;
 }
 
-@media screen and (min-width: 768px) {
-  .nav-menu {
-    display: flex;
-    margin-bottom: 10vh;
-    position: sticky;
-    top: 0;
-    z-index: 1;
-  }
-  .mobile-menu {
-    display: none;
-  }
-}
 </style>

@@ -8,10 +8,15 @@
 import Devices from '~/components/devices/Devices.vue';
 export default {
   components: {
-    Devices,
-  },
+    Devices
+  }
 };
 </script>
 
-<style>
+<style scoped>
+section {
+  background-color: #252850;
+  height: 100%;
+  padding-top: 0;
+}
 </style>
