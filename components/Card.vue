@@ -4,21 +4,26 @@
       <v-card-title class="text card-title"
         >{{ title }}
         <v-spacer></v-spacer>
-        <btn-icon
-          :color="isOn ? '#00C892' : 'error'"
-          icon="power"
-          :execFunct="turnOff"
-        />
+        <span @click="turnOff">
+          <btn-icon :color="isOn ? '#00C892' : 'error'" icon="power" />
+        </span>
       </v-card-title>
       <v-card-text>
         <p class="text">
           {{ subtitle }}
         </p>
+        <span @click="editDevice">
+          <btn-icon color="#252850" icon="pencil" />
+        </span>
       </v-card-text>
       <v-card-actions>
-        <span @click="getOneDevice">
-          <btn-icon color="#555582" :icon="type" />
+        <span @click="deleteDevice">
+          <btn-icon
+            color="#252850"
+            icon="delete"
+          ></btn-icon>
         </span>
+          <btn-icon color="#555582" :icon="type" />
       </v-card-actions>
     </v-card>
   </section>
@@ -40,7 +45,7 @@ export default {
     turnOff() {
       console.log('%c⧭', 'color: #ff0000', `${this.title} turned off`);
     },
-    getOneDevice() {
+    editDevice() {
       console.log('%c⧭', 'color: #00e600', this.actualDevice);
       this.$store.commit('getOneDevice', this.actualDevice);
       this.$router.push({
@@ -49,6 +54,9 @@ export default {
     },
     updateActualDevice() {
       this.actualDevice = this.device;
+    },
+    deleteDevice(){
+      console.log('%c⧭', 'color: #1d5673', 'Deleting device')
     }
   },
   created() {
@@ -60,5 +68,8 @@ export default {
 <style>
 .card-title {
   font-size: 30px;
+}
+.text {
+  color: #252850;
 }
 </style>
