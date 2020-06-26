@@ -1,5 +1,5 @@
 <template>
-  <v-snackbar top :color="color" timeout="2000" v-model="snackbar">
+  <v-snackbar top :color="color" timeout="2500" v-model="snackbar">
     {{ text }}
     <template v-slot:action="{ attrs }">
       <v-btn dark text v-bind="attrs" @click="snackbar = false">
@@ -11,12 +11,7 @@
 
 <script>
 export default {
-  props: ['color', 'text'],
-  data() {
-    return {
-      snackbar: true
-    };
-  }
+  props: ['color', 'text', 'snackbar']
 };
 </script>
 
