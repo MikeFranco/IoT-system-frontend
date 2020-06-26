@@ -39,11 +39,14 @@
             class="card-generic"
           >
             <Card
+              :device="device"
               :title="device.label"
               :subtitle="device.manufacturer"
               :type="device.type"
               :isOn="device.state.turnedOn"
+              :id="device.id"
             />
+            {{ device }}
           </v-flex>
         </v-layout>
         <v-layout
@@ -77,6 +80,7 @@
             :key="device.id"
             class="card-generic"
           >
+            {{ device }}
             <Card
               :device="device"
               :title="device.label"
@@ -103,10 +107,21 @@ export default {
     BtnIcon
   },
   computed: {
-    ...mapGetters(['getAllDevices']),
-    devices() {
+    ...mapGetters(['getAllDevices'])
+    /* devices() {
       return this.getAllDevices;
-    }
+    } */
+  },
+  data() {
+    return {
+      devices: []
+    };
+  },
+  created() {
+    this.devices = this.getAllDevices;
+  },
+  mounted() {
+    this.devices = this.getAllDevices;
   }
 };
 </script>
@@ -140,5 +155,4 @@ export default {
   max-height: 38vh;
   overflow-y: auto;
 }
-
 </style>

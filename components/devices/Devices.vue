@@ -24,6 +24,7 @@
             class="card-generic"
           >
             <Card
+              :device="device"
               :title="device.label"
               :subtitle="device.manufacturer"
               :type="device.type"

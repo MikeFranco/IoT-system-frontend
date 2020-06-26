@@ -16,7 +16,9 @@
         </p>
       </v-card-text>
       <v-card-actions>
-        <btn-icon color="#555582" :icon="type" />
+        <span @click="getOneDevice">
+          <btn-icon color="#555582" :icon="type" />
+        </span>
       </v-card-actions>
     </v-card>
   </section>
@@ -29,14 +31,31 @@ export default {
   components: {
     BtnIcon
   },
+  data() {
+    return {
+      actualDevice: {}
+    };
+  },
   methods: {
     turnOff() {
       console.log('%c⧭', 'color: #ff0000', `${this.title} turned off`);
     },
-    showMoreDevice(){
-      this.$store.commit('editDevice', )
+    getOneDevice() {
+      console.log('%c⧭', 'color: #00e600', this.actualDevice);
+      this.$store.commit('getOneDevice', this.actualDevice);
+    },
+    updateActualDevice() {
+      console.log('%c⧭', 'color: #733d00', this.device)
+      this.actualDevice = this.device;
+      console.log('%c⧭', 'color: #00a3cc', this.actualDevice);
     }
-  }
+  },
+  created() {
+    this.updateActualDevice();
+  },
+  /* watch: {
+    device: 'updateActualDevice'
+  } */
 };
 </script>
 
