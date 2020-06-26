@@ -6,18 +6,23 @@
       v-model="drawer"
       fixed
       app
-      class="main-app"
       color="#F0EDFF"
     >
       <v-list>
         <v-list-item-group>
-          <v-list-item v-for="item in items" :key="item.label" color="success">
+          <v-list-item
+            active-class="active"
+            v-for="item in items"
+            :key="item.label"
+            :to="item.route"
+          >
+            <v-list-item-icon>
+              <v-icon class="list-icon" color="#555582"> mdi-{{ item.icon }} </v-icon>
+            </v-list-item-icon>
             <v-list-item-content>
-              <v-icon class="label">mdi-{{ item.icon }}</v-icon>
               <v-list-item-title
                 v-text="item.label"
-                class="label link"
-                :to="item.route"
+                class="label"
               ></v-list-item-title>
             </v-list-item-content>
           </v-list-item>
@@ -73,9 +78,6 @@ export default {
 </script>
 
 <style scoped>
-.main-app, header {
-  padding: 0px 0px;
-}
 .main-toolbar {
   background-color: #252850;
   position: absolute;
@@ -87,16 +89,6 @@ export default {
 .container {
   min-width: 100%;
 }
-.toolbar {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.0),
-    0px 4px 5px 0px rgba(0, 0, 0, 0), 0px 1px 10px 0px rgba(0, 0, 0, 0) !important;
-}
-.link {
-  text-decoration: none;
-}
 
 .label {
   color: #252850;
@@ -104,5 +96,14 @@ export default {
 
 .text {
   color: #f0edff;
+}
+
+.active {
+  background-color: #252850;
+  color: #f0edff;
+}
+
+.list-icon {
+  padding-right: 50%;
 }
 </style>
