@@ -2,11 +2,11 @@
   <section>
     <v-app>
       <v-container fluid>
-        <v-layout justify-space-between row class="nav-menu">
+        <!-- <v-layout justify-space-between row class="nav-menu">
           <v-flex md12>
             <NavBar />
           </v-flex>
-        </v-layout>
+        </v-layout> -->
         <v-layout align-center justify-center row>
           <v-flex xs10 md5 class="main-title">
             <h1>Mi hogar</h1>
@@ -181,6 +181,7 @@ export default {
   padding-top: 0;
 }
 .main-title {
+  padding-top: 80px;
   text-align: center;
   font-size: 50px;
 }
@@ -218,7 +219,7 @@ export default {
 @media screen and (min-width: 768px) {
   .nav-menu {
     display: flex;
-    margin-bottom: 15px;
+    margin-bottom: 10vh;
     position: sticky;
     top: 0;
     z-index: 1;
