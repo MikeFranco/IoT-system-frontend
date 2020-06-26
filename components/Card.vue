@@ -43,19 +43,17 @@ export default {
     getOneDevice() {
       console.log('%c⧭', 'color: #00e600', this.actualDevice);
       this.$store.commit('getOneDevice', this.actualDevice);
+      this.$router.push({
+        path: '/edit-device'
+      });
     },
     updateActualDevice() {
-      console.log('%c⧭', 'color: #733d00', this.device)
       this.actualDevice = this.device;
-      console.log('%c⧭', 'color: #00a3cc', this.actualDevice);
     }
   },
   created() {
     this.updateActualDevice();
-  },
-  /* watch: {
-    device: 'updateActualDevice'
-  } */
+  }
 };
 </script>
 

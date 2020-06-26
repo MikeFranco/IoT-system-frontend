@@ -46,7 +46,6 @@
               :isOn="device.state.turnedOn"
               :id="device.id"
             />
-            {{ device }}
           </v-flex>
         </v-layout>
         <v-layout
@@ -80,7 +79,6 @@
             :key="device.id"
             class="card-generic"
           >
-            {{ device }}
             <Card
               :device="device"
               :title="device.label"

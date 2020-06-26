@@ -85,6 +85,10 @@ export default {
   },
   created() {
     this.$store.commit('saveDevices', this.devices);
+    /* this.$axios
+      .get('/back/devices')
+      .then(response => console.log('%c⧭', 'color: #00bf00', response))
+      .catch(error => console.error(error)); */
   }
 };
 </script>
