@@ -17,7 +17,9 @@
             :to="item.route"
           >
             <v-list-item-icon>
-              <v-icon class="list-icon" color="#555582"> mdi-{{ item.icon }} </v-icon>
+              <v-icon class="list-icon" color="#555582">
+                mdi-{{ item.icon }}
+              </v-icon>
             </v-list-item-icon>
             <v-list-item-content>
               <v-list-item-title
@@ -63,7 +65,7 @@ export default {
       title: "Smart's",
       items: [
         { label: 'Mi hogar', route: '/', icon: 'home' },
-        { label: 'Salas', route: '/rooms', icon: 'sofa' },
+        /* { label: 'Salas', route: '/rooms', icon: 'sofa' }, */
         { label: 'Dispositivos', route: '/devices', icon: 'cellphone' },
         { label: 'Historial', route: '/history', icon: 'history' }
       ],
