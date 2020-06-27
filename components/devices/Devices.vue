@@ -60,15 +60,10 @@ export default {
     BtnIcon
   },
   computed: {
-    ...mapGetters(['getAllDevices'])
-    /* devices() {
+    ...mapGetters(['getAllDevices']),
+    devices() {
       return this.getAllDevices;
-    } */
-  },
-  data() {
-    return {
-      devices: []
-    };
+    }
   },
   methods: {
     addNewDevice() {
@@ -77,9 +72,6 @@ export default {
       });
     }
   },
-  created() {
-    this.devices = this.getAllDevices;
-  }
 };
 </script>
 

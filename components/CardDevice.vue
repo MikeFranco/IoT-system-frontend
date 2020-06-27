@@ -6,7 +6,7 @@
       text="Device deleted successfully"
     />
     <Snackbar
-      color="#00C892"
+      color="#4F1A1C"
       :snackbar="errorDeleteSnackbar"
       text="Error deleting device"
     />
@@ -97,12 +97,14 @@ export default {
     },
     deleteDevice() {
       this.deleteSnackbar = false;
-      const body = {
-        id: this.device._id
+      const config = {
+        params: {
+          id: 'this.actualDevice._id'
+        }
       };
 
       this.$axios
-        .delete('/back/device', body)
+        .delete(`/back/device/${this.actualDevice._id}`, config)
         .then(() => {
           this.showSnackbar = true;
         })
@@ -111,8 +113,6 @@ export default {
           console.error(error);
         });
 
-      /* this.showSnackbar = true;
-      console.log('%c⧭', 'color: #1d5673', 'Deleting device'); */
     },
     tryDeleteDevice() {
       this.deleteSnackbar = true;
