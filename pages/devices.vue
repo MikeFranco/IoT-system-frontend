@@ -14,7 +14,6 @@ export default {
     this.$axios
       .get('/back/devices')
       .then(response => {
-        console.log('%c⧭', 'color: #7f7700', response.data)
         this.$store.commit('saveDevices', response.data.getDevices);
       })
       .catch(error => console.error(error));

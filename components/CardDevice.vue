@@ -1,15 +1,5 @@
 <template>
   <section>
-    <Snackbar
-      color="#00C892"
-      :snackbar="showSnackbar"
-      text="Device deleted successfully"
-    />
-    <Snackbar
-      color="#4F1A1C"
-      :snackbar="errorDeleteSnackbar"
-      text="Error deleting device"
-    />
     <v-snackbar top color="#4F1A1C" timeout="3000" v-model="deleteSnackbar">
       ¿Estás seguro de borrar {{ device.title }}?
       <template v-slot:action="{ attrs }">
@@ -56,20 +46,16 @@
 
 <script>
 import BtnIcon from './BtnIcon.vue';
-import Snackbar from './Snackbar.vue';
 export default {
   props: ['device', 'isOn'],
   components: {
-    BtnIcon,
-    Snackbar
+    BtnIcon
   },
   data() {
     return {
       actualDevice: {},
       actualDeviceIsOn: {},
-      showSnackbar: false,
-      deleteSnackbar: false,
-      errorDeleteSnackbar: false
+      deleteSnackbar: false
     };
   },
   methods: {
@@ -106,13 +92,12 @@ export default {
       this.$axios
         .delete(`/back/device/${this.actualDevice._id}`, config)
         .then(() => {
-          this.showSnackbar = true;
+          this.$noty.success('Device deleted successfully');
         })
         .catch(error => {
-          this.errorDeleteSnackbar = true;
-          console.error(error);
+          this.$noty.error('Error deleting device');
+          console.error('El error: ', error);
         });
-
     },
     tryDeleteDevice() {
       this.deleteSnackbar = true;

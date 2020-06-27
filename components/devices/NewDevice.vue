@@ -1,10 +1,5 @@
 <template>
   <v-app>
-    <Snackbar
-      color="#00C892"
-      text="Added new device successfully"
-      :snackbar="showSnackbar"
-    />
     <v-form v-model="valid">
       <v-container fluid>
         <v-layout align-center justify-center justify-space-around row>
@@ -70,24 +65,20 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import Snackbar from '~/components/Snackbar.vue';
 export default {
   computed: {
     ...mapGetters(['getAllDevices'])
   },
-  components: {
-    Snackbar
-  },
   data() {
     return {
       typeDevices: [
-        { text: 'Television', value: 'television' }, //1
-        { text: 'Altavoz', value: 'speaker' }, //1
-        { text: 'Refrigerador', value: 'fridge' }, //2
-        { text: 'Ventilador', value: 'fan' }, //3
-        { text: 'Iluminación', value: 'lightbulb' }, //4
-        { text: 'Robot aspirador', value: 'robot-vacuum-variant' }, //4
-        { text: 'Purificador de aire', value: 'air-filter' } //5
+        { text: 'Television', value: 'television' },
+        { text: 'Altavoz', value: 'speaker' },
+        { text: 'Refrigerador', value: 'fridge' },
+        { text: 'Ventilador', value: 'fan' },
+        { text: 'Iluminación', value: 'lightbulb' },
+        { text: 'Robot aspirador', value: 'robot-vacuum-variant' },
+        { text: 'Purificador de aire', value: 'air-filter' }
       ],
       nameRules: [v => !!v || 'Name is required'],
       typeRules: [v => !!v || 'Type is required'],
@@ -126,13 +117,15 @@ export default {
           .then(response => {
             const newDevices = [...this.getAllDevices, device];
             this.$store.commit('saveDevices', newDevices);
-            this.showSnackbar = true;
-            console.log('%c⧭', 'color: #99adcc', response)
+            this.$noty.success('Device added successfully')
             this.$router.push({
               path: '/devices'
             });
           })
-          .catch(error => console.error(error));
+          .catch(error => {
+            this.$noty.error('Error creating device');
+            console.error(error)
+          });
       }
     },
     getDeviceState() {
@@ -146,9 +139,6 @@ export default {
         ? { tunedOn: false, speed: 0 }
         : { tunedOn: false };
     }
-  },
-  created() {
-    this.editingDevice = this.getOneDevice;
   }
 };
 </script>

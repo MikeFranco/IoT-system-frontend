@@ -22,17 +22,17 @@
               <btn-icon class="header-icon" icon="plus" color="white" />
             </span>
           </v-flex>
-          <v-flex xs11 sm11 md12 v-if="devices.length == 0">
+        </v-layout>
+        <v-layout align-center justify-center row wrap class="cards-wrapper">
+          <v-flex xs11 sm11 md4 v-if="devices.length == 0">
             <v-card color="#F0EDFF">
-              <v-card-text class="text">
-                <p>
+              <v-card-text>
+                <p class="text">
                   No hay dispositivos
                 </p>
               </v-card-text>
             </v-card>
           </v-flex>
-        </v-layout>
-        <v-layout align-center justify-center row wrap class="cards-wrapper">
           <v-flex
             xs12
             sm5
@@ -71,7 +71,7 @@ export default {
         path: '/new-device'
       });
     }
-  },
+  }
 };
 </script>
 
