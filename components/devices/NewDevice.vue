@@ -130,14 +130,14 @@ export default {
     },
     getDeviceState() {
       return this.type == 'television'
-        ? { tunedOn: false, volumen: 0, channel: 1 }
+        ? { turnedOn: false, volumen: 0, channel: 1 }
         : this.type == 'speaker'
-        ? { tunedOn: false, volumen: 0 }
+        ? { turnedOn: false, volumen: 0 }
         : this.type == 'fridge'
-        ? { tunedOn: false, temperature: 0 }
+        ? { turnedOn: false, temperature: 0 }
         : this.type == 'fan'
-        ? { tunedOn: false, speed: 0 }
-        : { tunedOn: false };
+        ? { turnedOn: false, speed: 0 }
+        : { turnedOn: false };
     }
   }
 };
