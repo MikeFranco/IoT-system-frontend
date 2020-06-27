@@ -85,23 +85,25 @@ export default {
   },
   methods: {
     updateDevice() {
+      const newDeviceInfo = { ...this.editingDevice };
+      console.log('%c⧭', 'color: #00bf00', this.editingDevice);
       const body = {
-        
+        newDeviceInfo
       };
-      /* this.$axios.put('/back/device')
+      this.$axios
+        .put('/back/device', body)
         .then(response => {
-          console.log(reponse)
+          this.$noty.success('Update device successfully');
+          console.log(response);
           this.$router.push({
             path: '/devices'
-          })
+          });
         })
-        .catch(error => console.error(error))
-      */
-      console.log('%c⧭', 'color: #0088cc', 'Update device successfully');
+        .catch(error => console.error(error));
     }
   },
   created() {
-    this.editingDevice = this.getOneDevice;
+    this.editingDevice = { ...this.getOneDevice };
   }
 };
 </script>

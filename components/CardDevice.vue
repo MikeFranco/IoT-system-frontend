@@ -67,7 +67,6 @@ export default {
       
         this.$axios.put('/back/toggle-turn-off', body)
           .then(response => {
-            console.log('%c⧭', 'color: #aa00ff', response)
             this.$noty.success(`The device: ${this.actualDevice.label} is now ${this.actualDeviceIsOn ? 'On' : 'Off'}`)
           })
           .catch(error => console.error(error))
@@ -87,7 +86,6 @@ export default {
     setActualDevice() {
       this.actualDevice = this.device;
       this.actualDeviceIsOn = this.isOn;
-      console.log(`%cDevice ${this.actualDevice.label}`, 'color: #00a3cc', this.actualDeviceIsOn)
     },
     deleteDevice() {
       this.deleteSnackbar = false;
