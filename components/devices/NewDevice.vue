@@ -54,8 +54,10 @@
             >
             </v-select>
           </v-flex> -->
-          <v-flex xs10 md5>
-            <v-btn outlined @click="addDevice">
+        </v-layout>
+        <v-layout align-center justify-center justify-space-around row>
+          <v-flex xs10 md2>
+            <v-btn outlined block @click="addDevice">
               <v-icon class="btn-icon">mdi-content-save-outline</v-icon>
               Guardar cambios
             </v-btn>
@@ -108,26 +110,29 @@ export default {
   methods: {
     addDevice() {
       if (this.valid) {
-        const state = this.getDeviceState();
+        const deviceState = this.getDeviceState();
         const device = {
           label: this.label,
           type: this.type,
           manufacturer: this.manufacturer,
-          state
+          state: deviceState
         };
-        /* this.$axios.post('/back/device')
+        const body = {
+          device
+        };
+
+        this.$axios
+          .post('/back/device', body)
           .then(response => {
-            console.log(reponse)
+            const newDevices = [...this.getAllDevices, device];
+            this.$store.commit('saveDevices', newDevices);
+            this.showSnackbar = true;
+            console.log('%c⧭', 'color: #99adcc', response)
             this.$router.push({
               path: '/devices'
-            })
+            });
           })
-          .catch(error => console.error(error))
-        */
-
-        const newDevices = [...this.getAllDevices, device];
-        this.$store.commit('saveDevices', newDevices);
-        this.showSnackbar = true;
+          .catch(error => console.error(error));
       }
     },
     getDeviceState() {
@@ -155,6 +160,6 @@ export default {
   height: 100%;
 }
 .btn-icon {
-  padding-right: 5%;
+  padding-right: 15px;
 }
 </style>

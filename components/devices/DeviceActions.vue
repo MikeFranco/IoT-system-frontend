@@ -19,7 +19,11 @@
             max="5"
           ></v-slider>
         </v-flex>
-        <v-flex xs10 md2 v-show="deviceActions.channel && device.type == 'television'">
+        <v-flex
+          xs10
+          md2
+          v-show="deviceActions.channel && device.type == 'television'"
+        >
           <v-text-field
             v-model="deviceActions.channel"
             label="Canal"
@@ -28,7 +32,11 @@
             background-color="#555582"
           ></v-text-field>
         </v-flex>
-        <v-flex xs10 md2 v-show="deviceActions.temperature && device.type == 'fridge'">
+        <v-flex
+          xs10
+          md2
+          v-show="deviceActions.temperature && device.type == 'fridge'"
+        >
           <v-slider
             v-model="deviceActions.temperature"
             :label="`Temperature: ${deviceActions.temperature}`"
