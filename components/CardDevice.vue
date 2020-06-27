@@ -22,7 +22,7 @@
         </p>
       </v-card-text>
       <v-card-actions>
-        <span @click="turnOff">
+        <span @click="toggleTurnOff">
           <v-switch
             color="#00C892"
             v-model="actualDeviceIsOn"
@@ -54,17 +54,24 @@ export default {
   data() {
     return {
       actualDevice: {},
-      actualDeviceIsOn: {},
+      actualDeviceIsOn: false,
       deleteSnackbar: false
     };
   },
   methods: {
-    turnOff() {
-      /* 
-        this.$axios.put('/back/device)
-          .then(response => console.log(response))
+    toggleTurnOff() {
+      const body = {
+        id: this.actualDevice._id,
+        turnOnValue: this.actualDeviceIsOn
+      };
+      
+        this.$axios.put('/back/toggle-turn-off', body)
+          .then(response => {
+            console.log('%c⧭', 'color: #aa00ff', response)
+            this.$noty.success(`The device: ${this.actualDevice.label} is now ${this.actualDeviceIsOn ? 'On' : 'Off'}`)
+          })
           .catch(error => console.error(error))
-      */
+     
       console.log(
         '%c⧭',
         'color: #ff0000',
@@ -80,6 +87,7 @@ export default {
     setActualDevice() {
       this.actualDevice = this.device;
       this.actualDeviceIsOn = this.isOn;
+      console.log(`%cDevice ${this.actualDevice.label}`, 'color: #00a3cc', this.actualDeviceIsOn)
     },
     deleteDevice() {
       this.deleteSnackbar = false;
