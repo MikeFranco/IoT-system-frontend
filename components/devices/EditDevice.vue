@@ -42,8 +42,10 @@
           >
           </v-select>
         </v-flex> -->
-        <v-flex xs10 md5>
-          <v-btn outlined @click="updateDevice">
+      </v-layout>
+      <v-layout align-center justify-center justify-space-around row>
+        <v-flex xs10 md2>
+          <v-btn outlined block @click="updateDevice">
             <v-icon class="btn-icon">mdi-content-save-outline</v-icon>
             Guardar cambios
           </v-btn>
@@ -62,13 +64,13 @@ export default {
   data() {
     return {
       typeDevices: [
-        { text: 'Television', value: 'television' },//1
-        { text: 'Altavoz', value: 'speaker' },//1
-        { text: 'Refrigerador', value: 'fridge' },//2
-        { text: 'Ventilador', value: 'fan' },//3
-        { text: 'Iluminación', value: 'lightbulb' },//4
-        { text: 'Robot aspirador', value: 'robot-vacuum-variant' },//4
-        { text: 'Purificador de aire', value: 'air-filter' },//5
+        { text: 'Television', value: 'television' }, //1
+        { text: 'Altavoz', value: 'speaker' }, //1
+        { text: 'Refrigerador', value: 'fridge' }, //2
+        { text: 'Ventilador', value: 'fan' }, //3
+        { text: 'Iluminación', value: 'lightbulb' }, //4
+        { text: 'Robot aspirador', value: 'robot-vacuum-variant' }, //4
+        { text: 'Purificador de aire', value: 'air-filter' } //5
       ],
       rooms: [
         { text: 'Sala', value: 'lounge' },
@@ -76,13 +78,16 @@ export default {
         { text: 'Cocina', value: 'kitchen' },
         { text: 'Habitación 1', value: 'room 1' },
         { text: 'Habitación 2', value: 'room 2' },
-        { text: 'Habitación 3', value: 'room 3' },
+        { text: 'Habitación 3', value: 'room 3' }
       ],
       editingDevice: {}
     };
   },
   methods: {
     updateDevice() {
+      const body = {
+        
+      };
       /* this.$axios.put('/back/device')
         .then(response => {
           console.log(reponse)
@@ -92,7 +97,7 @@ export default {
         })
         .catch(error => console.error(error))
       */
-     console.log('%c⧭', 'color: #0088cc', 'Update device successfully')
+      console.log('%c⧭', 'color: #0088cc', 'Update device successfully');
     }
   },
   created() {

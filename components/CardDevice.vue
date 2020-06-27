@@ -79,7 +79,6 @@ export default {
           .then(response => console.log(response))
           .catch(error => console.error(error))
       */
-      console.log('%c⧭', 'color: #007300', this.actualDeviceIsOn);
       console.log(
         '%c⧭',
         'color: #ff0000',
@@ -87,28 +86,33 @@ export default {
       );
     },
     editDevice() {
-      console.log('%c⧭', 'color: #00e600', this.actualDevice);
       this.$store.commit('setOneDevice', this.actualDevice);
       this.$router.push({
         path: '/edit-device'
       });
     },
     setActualDevice() {
-      //this.$store.commit('setOneDevice', this.actualDevice);
       this.actualDevice = this.device;
       this.actualDeviceIsOn = this.isOn;
     },
     deleteDevice() {
       this.deleteSnackbar = false;
-      /* this.$axios.delete('/back/device)
-        .then(() => this.showSnackbar = true)
-        .catch(error => {
-          this.errorDeleteSnackbar = true
-          console.error(error)
+      const body = {
+        id: this.device._id
+      };
+
+      this.$axios
+        .delete('/back/device', body)
+        .then(() => {
+          this.showSnackbar = true;
         })
-      */
-      this.showSnackbar = true;
-      console.log('%c⧭', 'color: #1d5673', 'Deleting device');
+        .catch(error => {
+          this.errorDeleteSnackbar = true;
+          console.error(error);
+        });
+
+      /* this.showSnackbar = true;
+      console.log('%c⧭', 'color: #1d5673', 'Deleting device'); */
     },
     tryDeleteDevice() {
       this.deleteSnackbar = true;
