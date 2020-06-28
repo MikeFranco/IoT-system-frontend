@@ -1,7 +1,8 @@
 export const state = () =>({
   devices: [],
   oneDevice: {},
-  oneDeviceActions: {}
+  oneDeviceActions: {},
+  userName: ''
 })
 
 export const getters = {
@@ -13,6 +14,9 @@ export const getters = {
   },
   getOneDeviceActions(state){
     return state.oneDeviceActions
+  },
+  getUserName(state){
+    return state.userName;
   }
 }
 
@@ -25,5 +29,8 @@ export const mutations = {
   },
   setOneDeviceActions(state, value){
     state.oneDeviceActions = value;
+  },
+  setUserName(state, value){
+    state.userName = value;
   }
 }

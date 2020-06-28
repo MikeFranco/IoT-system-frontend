@@ -64,7 +64,7 @@ export default {
     return {
       title: "Smart's",
       items: [
-        { label: 'Mi hogar', route: '/', icon: 'home' },
+        { label: 'Mi hogar', route: '/home', icon: 'home' },
         /* { label: 'Salas', route: '/rooms', icon: 'sofa' }, */
         { label: 'Dispositivos', route: '/devices', icon: 'cellphone' },
         { label: 'Historial', route: '/history', icon: 'history' }

@@ -1,22 +1,37 @@
 <template>
-  <section>
-    <Home />
+  <section class="main-section">
+    <v-tab>Login</v-tab>
+    <v-tab>Sign up</v-tab>
+    <Login />
+    <!-- <SignUp /> -->
   </section>
 </template>
 
 <script>
-import Home from '../components/home/Home';
+import Login from '../components/logReg/Login.vue';
+import SignUp from '../components/logReg/SignUp.vue';
 export default {
   components: {
-    Home
+    Login,
+    SignUp
   },
-  created() {
-    this.$axios
-      .get('/back/devices')
-      .then(response => {
-        this.$store.commit('saveDevices', response.data.getDevices);
-      })
-      .catch(error => console.error(error));
-  }
+  data() {
+    return {
+      showLogin: true,
+      showSignUp: false
+    }
+  },
 };
 </script>
+
+<style scoped>
+.main-section {
+  position: fixed;
+  padding-left: 2%;
+  padding-top: 5%;
+  height: 100%;
+  width: 100%;
+  background-color: #252850;
+  left: 0;
+}
+</style>
