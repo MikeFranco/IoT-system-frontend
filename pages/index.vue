@@ -1,26 +1,15 @@
 <template>
   <section class="main-section">
-    <v-tab>Login</v-tab>
-    <v-tab>Sign up</v-tab>
-    <Login />
-    <!-- <SignUp /> -->
+    <MainLogin/>
   </section>
 </template>
 
 <script>
-import Login from '../components/logReg/Login.vue';
-import SignUp from '../components/logReg/SignUp.vue';
+import MainLogin from '../components/logReg/MainLogin.vue';
 export default {
   components: {
-    Login,
-    SignUp
-  },
-  data() {
-    return {
-      showLogin: true,
-      showSignUp: false
-    }
-  },
+    MainLogin
+  }
 };
 </script>
 

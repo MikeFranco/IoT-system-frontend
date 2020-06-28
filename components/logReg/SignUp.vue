@@ -4,15 +4,12 @@
       <v-container fluid>
         <v-layout align-center justify-center row>
           <v-flex xs10 md5 class="main-title">
-            <h1>Login</h1>
+            <h1>Sign Up</h1>
           </v-flex>
         </v-layout>
         <v-layout align-center justify-center row wrap class="cards-wrapper">
           <v-flex xs10 md5>
             <v-card color="#555582">
-              <!-- <v-card-title class="text card-title">
-                User name:
-              </v-card-title> -->
               <v-card-subtitle>
                 <v-form v-model="valid">
                   <v-text-field
@@ -56,8 +53,8 @@
         </v-layout>
         <v-layout align-center justify-center justify-space-around row>
           <v-flex xs10 md2>
-            <v-btn outlined block @click="login">
-              Login
+            <v-btn outlined block @click="signUp">
+              Sign Up
             </v-btn>
           </v-flex>
         </v-layout>
@@ -68,6 +65,7 @@
 
 <script>
 export default {
+  props:['changeToLogin'],
   data() {
     return {
       show1: false,
@@ -88,7 +86,7 @@ export default {
     };
   },
   methods: {
-    login() {
+    signUp() {
       if (this.password != this.confirmPassword) {
         this.$noty.error('Passwords didnt match');
         return;
@@ -99,6 +97,15 @@ export default {
           email: this.email,
           password: this.password
         };
+        this.$axios
+          .post('/back/sign-up', body)
+          .then(response => {
+            this.$noty.success('Account created successfully');
+            this.changeToLogin();
+          })
+          .catch(error => {
+            this.$noty.error('An error has ocurred');
+          });
       }
     }
   }
