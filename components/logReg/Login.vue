@@ -78,6 +78,7 @@ export default {
               'setUserName',
               response.data.currentUser.username
             );
+            this.$store.commit('setUserId', response.data.currentUser._id);
             this.$router.push({
               path: '/devices'
             });

@@ -12,7 +12,7 @@
             <v-card color="#F0EDFF">
               <v-card-text>
                 <p class="text">
-                  No hay dispositivos
+                  There are no devices
                 </p>
               </v-card-text>
             </v-card>

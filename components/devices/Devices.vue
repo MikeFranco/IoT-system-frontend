@@ -4,7 +4,7 @@
       <v-container fluid>
         <v-layout align-center justify-center row>
           <v-flex xs10 md5 class="main-title">
-            <h1>Mis dispositivos</h1>
+            <h1> {{ getUserName }} device's</h1>
           </v-flex>
         </v-layout>
         <v-layout
@@ -15,7 +15,7 @@
           row
         >
           <v-flex xs10 md5>
-            <h1>Todos los dispositivos </h1>
+            <h1>All device's </h1>
           </v-flex>
           <v-flex xs1 md1>
             <span @click="addNewDevice">
@@ -28,7 +28,7 @@
             <v-card color="#F0EDFF">
               <v-card-text>
                 <p class="text">
-                  No hay dispositivos
+                  There are no devices
                 </p>
               </v-card-text>
             </v-card>
@@ -60,7 +60,7 @@ export default {
     BtnIcon
   },
   computed: {
-    ...mapGetters(['getAllDevices']),
+    ...mapGetters(['getAllDevices', 'getUserName']),
     devices() {
       return this.getAllDevices;
     }

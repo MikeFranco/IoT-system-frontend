@@ -67,7 +67,7 @@
 import { mapGetters } from 'vuex';
 export default {
   computed: {
-    ...mapGetters(['getAllDevices'])
+    ...mapGetters(['getAllDevices', 'getUserId'])
   },
   data() {
     return {
@@ -106,8 +106,10 @@ export default {
           label: this.label,
           type: this.type,
           manufacturer: this.manufacturer,
-          state: deviceState
+          state: deviceState,
+          userId: this.getUserId
         };
+        console.log('%c⧭', 'color: #e57373', this.getUserId);
         const body = {
           device
         };
@@ -115,16 +117,14 @@ export default {
         this.$axios
           .post('/back/device', body)
           .then(response => {
-            const newDevices = [...this.getAllDevices, device];
-            this.$store.commit('saveDevices', newDevices);
-            this.$noty.success('Device added successfully')
+            this.$noty.success('Device added successfully');
             this.$router.push({
               path: '/devices'
             });
           })
           .catch(error => {
             this.$noty.error('Error creating device');
-            console.error(error)
+            console.error(error);
           });
       }
     },

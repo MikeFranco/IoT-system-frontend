@@ -10,14 +10,6 @@ export default {
   middleware: ['isLogged'],
   components: {
     Home
-  },
-  created() {
-    this.$axios
-      .get('/back/devices')
-      .then(response => {
-        this.$store.commit('saveDevices', response.data.getDevices);
-      })
-      .catch(error => console.error(error));
   }
 };
 </script>

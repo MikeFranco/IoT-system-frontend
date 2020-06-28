@@ -5,15 +5,19 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import HistoryDevices from '../components/devices/HistoryDevices.vue';
 export default {
   middleware: ['isLogged'],
   components: {
     HistoryDevices
   },
+  computed: {
+    ...mapGetters(['getUserId'])
+  },
   created() {
     this.$axios
-      .get('/back/devices')
+      .get(`/back/devices?userId=${this.getUserId}`)
       .then(response => {
         this.$store.commit('saveDevices', response.data.getDevices);
       })

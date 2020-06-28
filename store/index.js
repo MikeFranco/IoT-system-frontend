@@ -2,7 +2,8 @@ export const state = () => ({
   devices: [],
   oneDevice: {},
   oneDeviceActions: {},
-  userName: ""
+  userName: '',
+  userId: ''
 });
 
 export const getters = {
@@ -17,6 +18,9 @@ export const getters = {
   },
   getUserName(state) {
     return state.userName;
+  },
+  getUserId(state) {
+    return state.userId;
   }
 };
 
@@ -32,5 +36,8 @@ export const mutations = {
   },
   setUserName(state, value) {
     state.userName = value;
+  },
+  setUserId(state, value) {
+    state.userId = value;
   }
 };
