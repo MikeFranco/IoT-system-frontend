@@ -79,7 +79,7 @@ export default {
               response.data.currentUser.username
             );
             this.$router.push({
-              path: '/home'
+              path: '/devices'
             });
           })
           .catch(error => {
