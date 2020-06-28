@@ -7,6 +7,7 @@
 <script>
 import HistoryDevices from '../components/devices/HistoryDevices.vue';
 export default {
+  middleware: ['isLogged'],
   components: {
     HistoryDevices
   },

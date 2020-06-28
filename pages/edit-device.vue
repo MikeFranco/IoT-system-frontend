@@ -7,6 +7,7 @@
 <script>
 import EditDevice from '~/components/devices/EditDevice.vue';
 export default {
+  middleware: ['isLogged'],
   components: {
     EditDevice,
   },

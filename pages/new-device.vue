@@ -7,10 +7,11 @@
 <script>
 import NewDevice from '~/components/devices/NewDevice.vue';
 export default {
+  middleware: ['isLogged'],
   components: {
-    NewDevice,
-  },
-}
+    NewDevice
+  }
+};
 </script>
 
 <style>

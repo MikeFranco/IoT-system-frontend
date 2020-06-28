@@ -7,6 +7,7 @@
 <script>
 import DeviceActions from '~/components/devices/DeviceActions.vue';
 export default {
+  middleware: ['isLogged'],
   components: {
     DeviceActions,
   },

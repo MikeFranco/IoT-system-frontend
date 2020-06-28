@@ -7,6 +7,7 @@
 <script>
 import Devices from '~/components/devices/Devices.vue';
 export default {
+  middleware: ['isLogged'],
   components: {
     Devices
   },
